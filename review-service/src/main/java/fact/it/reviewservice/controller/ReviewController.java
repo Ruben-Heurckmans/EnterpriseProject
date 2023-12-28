@@ -16,11 +16,13 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
+    /*
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public void createReview(@RequestBody ReviewRequest reviewRequest){
         reviewService.createReview(reviewRequest);
     }
+    */
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
@@ -28,4 +30,9 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+    @GetMapping("/{reviewCode}")
+    @ResponseStatus(HttpStatus.OK)
+    public ReviewResponse getReviewByReviewCode(@PathVariable String reviewCode){
+        return reviewService.getReviewByReviewCode(reviewCode);
+    }
 }

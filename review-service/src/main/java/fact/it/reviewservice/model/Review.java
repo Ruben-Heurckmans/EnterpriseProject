@@ -15,7 +15,8 @@ import java.util.List;
 @Data
 public class Review {
     private String id;
-    private String user;
-    private String restaurant;
-    private String imageList;
+    private String reviewCode;
+    private String restaurantCode;
+    private String userCode;
+    private String description;
 }
