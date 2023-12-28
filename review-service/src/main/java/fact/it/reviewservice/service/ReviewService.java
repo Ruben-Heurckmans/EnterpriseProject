@@ -47,8 +47,8 @@ public class ReviewService {
 
     @Transactional()
     public List<ReviewResponse> getAllReviews(){
-        List<Review> restaurants = reviewRepository.findAll();
-        return restaurants.stream().map(this::mapToReviewResponse).toList();
+        List<Review> reviews = reviewRepository.findAll();
+        return reviews.stream().map(this::mapToReviewResponse).toList();
     }
 
     @Transactional()
