@@ -1,17 +1,14 @@
 package fact.it.restaurantservice.dto;
 
-import fact.it.restaurantservice.model.RestaurantReview;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RestaurantRequest {
-    private Long id;
+    private String restaurantCode;
     private String name;
     private String street;
     private String streetNumber;
