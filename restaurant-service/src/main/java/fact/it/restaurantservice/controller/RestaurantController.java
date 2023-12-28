@@ -14,18 +14,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RestaurantController {
 
-    private RestaurantService restaurantService;
+    private final RestaurantService restaurantService;
 
+    /*
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public String addRestaurant(@RequestBody RestaurantRequest restaurantRequest){
         boolean result = restaurantService.addRestaurant(restaurantRequest);
         return (result ? "Restaurant succesvol aangemaakt" : "Restaurant aanmaken gefaald");
     }
+    */
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<RestaurantResponse> getAllRestaurants(){
         return restaurantService.getAllRestaurants();
+    }
+
+    @GetMapping("/{restaurantCode}")
+    @ResponseStatus(HttpStatus.OK)
+    public RestaurantResponse getRestaurantByRestaurantCode(@PathVariable String restaurantCode){
+        return restaurantService.getRestaurantByRestaurantCode(restaurantCode);
     }
 }
