@@ -35,4 +35,10 @@ public class ReviewController {
     public ReviewResponse getReviewByReviewCode(@PathVariable String reviewCode){
         return reviewService.getReviewByReviewCode(reviewCode);
     }
+
+    @DeleteMapping ("/{reviewCode}")
+    @ResponseStatus(HttpStatus.OK)
+    public String deleteReviewByReviewCode(@PathVariable String reviewCode){
+        return reviewService.deleteReviewByReviewCode(reviewCode);
+    }
 }

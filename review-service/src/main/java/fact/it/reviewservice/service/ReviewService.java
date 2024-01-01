@@ -21,7 +21,7 @@ public class ReviewService {
 
     @PostConstruct
     public void loadData(){
-        if(reviewRepository.count() > 0){
+        if(reviewRepository.count() == 0){
             Review review1 = new Review();
             review1.setReviewCode("rev1");
             review1.setRestaurantCode("resto1");
@@ -55,6 +55,14 @@ public class ReviewService {
     public ReviewResponse getReviewByReviewCode(String reviewCode){
         Review review = reviewRepository.findByReviewCodeIn(Collections.singleton(reviewCode));
         return mapToReviewResponse(review);
+    }
+
+    @Transactional()
+    public String deleteReviewByReviewCode(String reviewCode){
+        Review review = reviewRepository.findByReviewCodeIn(Collections.singleton(reviewCode));
+
+        reviewRepository.deleteById(review.getId());
+        return "Review deleted";
     }
 
     private ReviewResponse mapToReviewResponse(Review review){
