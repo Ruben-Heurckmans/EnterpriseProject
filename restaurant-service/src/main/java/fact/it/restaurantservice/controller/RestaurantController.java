@@ -19,13 +19,13 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public List<RestaurantResponse> getAllRestaurants(){
         return restaurantService.getAllRestaurants();
     }
 
-    @GetMapping("/{restaurantCode}")
+    @GetMapping("/get/{restaurantCode}")
     @ResponseStatus(HttpStatus.OK)
     public RestaurantResponse getRestaurantByRestaurantCode(@PathVariable String restaurantCode){
         return restaurantService.getRestaurantByRestaurantCode(restaurantCode);
@@ -37,7 +37,7 @@ public class RestaurantController {
         restaurantService.createRestaurant(restaurantRequest);
     }
 
-    @PutMapping("/{restaurantCode}")
+    @PutMapping("/update/{restaurantCode}")
     @ResponseStatus(HttpStatus.OK)
     public RestaurantResponse changeRestaurant(@RequestBody Restaurant updateRestaurant, @PathVariable String restaurantCode) {
         return restaurantService.changeRestaurant(updateRestaurant, restaurantCode);
