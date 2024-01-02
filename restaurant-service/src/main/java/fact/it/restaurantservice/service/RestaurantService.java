@@ -8,11 +8,15 @@ import fact.it.restaurantservice.repository.RestaurantRepository;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,7 +27,7 @@ public class RestaurantService {
 
     @PostConstruct
     public void loadData(){
-        if(restaurantRepository.count() > 0){
+        if(restaurantRepository.count() == 0){
             Restaurant restaurant1 = new Restaurant();
             restaurant1.setRestaurantCode("Resto1");
             restaurant1.setName("De Verandering");
@@ -53,6 +57,12 @@ public class RestaurantService {
         return true;
     }
     */
+
+    public Optional<Restaurant> getOptionalRestaurantByCode(String restaurantCode){
+        System.out.println(restaurantRepository.findAll().stream().filter(r-> r.getRestaurantCode()==restaurantCode).findFirst());
+        return restaurantRepository.findAll().stream().filter(r-> r.getRestaurantCode()==restaurantCode).findFirst();
+    }
+
     @Transactional()
     public List<RestaurantResponse> getAllRestaurants(){
         List<Restaurant> restaurants = restaurantRepository.findAll();
@@ -65,21 +75,18 @@ public class RestaurantService {
         return mapToRestaurantResponse(restaurant);
     }
 
+    public void createRestaurant(RestaurantRequest restaurantRequest) {
+        Restaurant restaurant = Restaurant.builder()
+                .restaurantCode(restaurantRequest.getRestaurantCode())
+                .name(restaurantRequest.getName())
+                .street(restaurantRequest.getStreet())
+                .streetNumber(restaurantRequest.getStreetNumber())
+                .place(restaurantRequest.getPlace())
+                .zipcode(restaurantRequest.getZipcode())
+                .build();
 
-    /*
-
-    public List<OrderResponse> getAllReviews() {
-        List<Order> orders = orderRepository.findAll();
-
-        return orders.stream()
-                .map(order -> new OrderResponse(
-                        order.getOrderNumber(),
-                        mapToOrderLineItemsDto(order.getOrderLineItemsList())
-                ))
-                .collect(Collectors.toList());
+        restaurantRepository.save(restaurant);
     }
-
-     */
 
     private RestaurantResponse mapToRestaurantResponse(Restaurant restaurant){
         return RestaurantResponse.builder()
@@ -90,5 +97,27 @@ public class RestaurantService {
                 .place(restaurant.getPlace())
                 .zipcode(restaurant.getZipcode())
                 .build();
+    }
+
+    public RestaurantResponse changeRestaurant(Restaurant updateRestaurant, String restaurantCode) {
+        Restaurant restaurant = restaurantRepository.findByRestaurantCodeIn(Collections.singleton(restaurantCode));
+        Optional<Restaurant> optionalRestaurant = null;
+        if (restaurant != null){
+            Long id = restaurant.getId();
+            optionalRestaurant = restaurantRepository.findById(id);
+            if (optionalRestaurant.isPresent()) {
+                Restaurant oldRestaurant = optionalRestaurant.get();
+                oldRestaurant.setRestaurantCode(updateRestaurant.getRestaurantCode());
+                oldRestaurant.setName(updateRestaurant.getName());
+                oldRestaurant.setStreet(updateRestaurant.getStreet());
+                oldRestaurant.setStreetNumber(updateRestaurant.getStreetNumber());
+                oldRestaurant.setPlace(updateRestaurant.getPlace());
+                oldRestaurant.setZipcode(updateRestaurant.getZipcode());
+                restaurantRepository.save(oldRestaurant);
+                return mapToRestaurantResponse(oldRestaurant);
+            }
+        }
+
+        return null;
     }
 }
