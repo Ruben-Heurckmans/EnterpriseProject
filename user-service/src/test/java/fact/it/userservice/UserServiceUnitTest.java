@@ -28,7 +28,7 @@ public class UserServiceUnitTest {
     private UserRepository userRepository;
 
     @Test
-    public void testGetAllProducts() {
+    public void testGetAllUsers() {
         // Arrange
         User user = new User();
         user.setId(8743921856723412L);
@@ -57,7 +57,7 @@ public class UserServiceUnitTest {
     }
 
     @Test
-    public void getUserByUserCode() {
+    public void testGetUserByUserCode() {
         // Arrange
         User user = new User();
         user.setId(8743921856723412L);
