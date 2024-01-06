@@ -21,6 +21,7 @@ public class UserService {
     public void loadData(){
         if(userRepository.count() == 0){
             User user1 = new User();
+            User user2 = new User();
             user1.setUserCode("user1");
             user1.setName("Heurckmans");
             user1.setFirstName("Ruben");
@@ -29,7 +30,16 @@ public class UserService {
             user1.setPlace("Mol");
             user1.setZipcode("2400");
 
+            user2.setUserCode("user2");
+            user2.setName("Vanhelden");
+            user2.setFirstName("Joppe");
+            user2.setStreet("Berkvenstraat");
+            user2.setStreetNumber("29");
+            user2.setPlace("Mol");
+            user2.setZipcode("2400");
+
             userRepository.save(user1);
+            userRepository.save(user2);
         }
     }
 
