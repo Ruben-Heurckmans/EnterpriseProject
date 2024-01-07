@@ -75,4 +75,26 @@ public class ReviewServiceUnitTest {
 
         verify(reviewRepository, times(1)).findByReviewCodeIn(Collections.singleton(review.getReviewCode()));
     }
+
+
+    @Test
+    public void testDeleteReviewByReviewCode() {
+        // Arrange
+        Review review = new Review();
+        review.setId("1");
+        review.setReviewCode("rev1");
+        review.setDescription("TestReview");
+        review.setUserCode("user1");
+        review.setRestaurantCode("resto1");
+
+        when(reviewRepository.findByReviewCodeIn(Collections.singleton("rev1"))).thenReturn(review);
+        doNothing().when(reviewRepository).deleteById("1");
+
+        // Act
+        reviewService.deleteReviewByReviewCode("rev1");
+
+        // Assert
+        verify(reviewRepository, times(1)).findByReviewCodeIn(Collections.singleton(review.getReviewCode()));
+        verify(reviewRepository, times(1)).deleteById(review.getId());
+    }
 }

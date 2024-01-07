@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/image")
 @RequiredArgsConstructor
 public class ImageController {
     private final ImageService imageService;
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public List<ImageResponse> getAllImages(){
         return imageService.getAllImages();
     }
 
-    @GetMapping("/{imageCode}")
+    @GetMapping("/get/{imageCode}")
     @ResponseStatus(HttpStatus.OK)
     public ImageResponse getImageByImageCode(@PathVariable String imageCode){
         return imageService.getImageByImageCode(imageCode);

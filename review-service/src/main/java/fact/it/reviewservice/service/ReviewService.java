@@ -29,21 +29,16 @@ public class ReviewService {
             review1.setDescription("Goed restaurant");
 
             reviewRepository.save(review1);
+
+            Review review2 = new Review();
+            review1.setReviewCode("rev2");
+            review1.setRestaurantCode("resto2");
+            review1.setUserCode("user2");
+            review1.setDescription("Meh restaurant");
+
+            reviewRepository.save(review2);
         }
     }
-
-    /*
-    public void createReview(ReviewRequest reviewRequest){
-        Review review = Review.builder()
-                .user(reviewRequest.getUser())
-                .restaurant(reviewRequest.getRestaurant())
-                .imageList(reviewRequest.getImageList())
-                .build();
-
-        reviewRepository.save(review);
-    }
-
-     */
 
     @Transactional()
     public List<ReviewResponse> getAllReviews(){
