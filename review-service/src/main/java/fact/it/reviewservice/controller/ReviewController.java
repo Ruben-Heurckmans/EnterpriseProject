@@ -32,4 +32,11 @@ public class ReviewController {
     public String deleteReviewByReviewCode(@PathVariable String reviewCode){
         return reviewService.deleteReviewByReviewCode(reviewCode);
     }
+
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.OK)
+    public void createRestaurant(@RequestBody ReviewRequest reviewRequest){
+        reviewService.createReview(reviewRequest);
+    }
+
 }

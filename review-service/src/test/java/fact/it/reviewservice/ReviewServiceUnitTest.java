@@ -1,5 +1,6 @@
 package fact.it.reviewservice;
 
+import fact.it.reviewservice.dto.ReviewRequest;
 import fact.it.reviewservice.dto.ReviewResponse;
 import fact.it.reviewservice.model.Review;
 import fact.it.reviewservice.repository.ReviewRepository;
@@ -11,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -96,5 +98,23 @@ public class ReviewServiceUnitTest {
         // Assert
         verify(reviewRepository, times(1)).findByReviewCodeIn(Collections.singleton(review.getReviewCode()));
         verify(reviewRepository, times(1)).deleteById(review.getId());
+    }
+
+    @Test
+    public void createReview() {
+        // Arrange
+        ReviewRequest reviewRequest = new ReviewRequest();
+        reviewRequest.setReviewCode("rev2");
+        reviewRequest.setDescription("NewReview");
+        reviewRequest.setUserCode("user2");
+        reviewRequest.setRestaurantCode("resto2");
+        List<String> imageString = new ArrayList<>(List.of("img1", "img2"));
+        reviewRequest.setImageCodes(imageString);
+
+        // Act
+        reviewService.createReview(reviewRequest);
+
+        // Assert
+        verify(reviewRepository, times(1)).save(any(Review.class));
     }
 }
