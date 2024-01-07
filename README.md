@@ -30,47 +30,47 @@ Voor dit project zijn we gegaan voor een basic restaurant review app. Hierbij ku
 
 ### User
 user/get/all -> lijst van alle users
-![userGetAll](./screenshots/userGetAll.png)
+![userGetAll](./Screenshots/userGetAll.png)
 
 user/get/user1 -> data van user1
-![userGetAll](./screenshots/userGetUser1.png)
+![userGetAll](./Screenshots/userGetUser1.png)
 
 ### Review
 review/get/all -> lijst van alle reviews
-![reviewGetAll](./screenshots/reviewGetAll.png)
+![reviewGetAll](./Screenshots/reviewGetAll.png)
 
 review/get/rev1 -> data van rev1
-![reviewGetRev1](./screenshots/reviewGetRev1.png)
+![reviewGetRev1](./Screenshots/reviewGetRev1.png)
 
 review/add -> toevoegen van review
-![reviewAdd](./screenshots/reviewAdd.png)
+![reviewAdd](./Screenshots/reviewAdd.png)
 
 review/get/all -> lijst van alle reviews na toevoegen rev5
-![reviewGetAll2](./screenshots/reviewGetAll2.png)
+![reviewGetAll2](./Screenshots/reviewGetAll2.png)
 
 review/delete/rev1 -> deleten van rev1
-![reviewDeleteRev1](./screenshots/reviewDeleteRev1.png)
+![reviewDeleteRev1](./Screenshots/reviewDeleteRev1.png)
 
 review/get/all -> lijst van alle reviews na delete rev1
-![reviewGetAll3](./screenshots/reviewGetAll3.png)
+![reviewGetAll3](./Screenshots/reviewGetAll3.png)
 
 ### Image
 
 image/get/all -> lijst van alle images
-![imageGetAll](./screenshots/imageGetAll.png)
+![imageGetAll](./Screenshots/imageGetAll.png)
 
 image/get/img1 -> data van img1
-![imageGetImg1](./screenshots/imageGetImg1.png)
+![imageGetImg1](./Screenshots/imageGetImg1.png)
 
 ### Restaurant
 
 restaurant/add -> toevoegen van restaurant
-![restaurantAdd](./screenshots/restaurantAdd.png)
+![restaurantAdd](./Screenshots/restaurantAdd.png)
 
 restaurant/get/all -> lijst van alle restaurants
-![restaurantGetAll](./screenshots/restaurantGetAll.png)
+![restaurantGetAll](./Screenshots/restaurantGetAll.png)
 
 restaurant/update/resto5 -> data van img1
-![restaurantUpdateResto5](./screenshots/restaurantUpdateResto5.png)
+![restaurantUpdateResto5](./Screenshots/restaurantUpdateResto5.png)
 
 
