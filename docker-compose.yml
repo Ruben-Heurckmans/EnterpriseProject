@@ -82,21 +82,24 @@ services:
       MYSQL_DB_PORT: 3306
 
   api-gateway:
-   depends_on:
-     - review-service
-     - user-service
-     - restaurant-service
-   image: joppevhd/api-gateway
-   ports:
-     - 8085:8085
-   links:
-     - review-service
-     - user-service
-     - restaurant-service
-   environment:
-     REVIEW_SERVICE_BASEURL: review-service:8082
-     USER_SERVICE_BASEURL: user-service:8083
-     RESTAURANT_SERVICE_BASEURL: restaurant-service:8081
+    depends_on:
+      - review-service
+      - user-service
+      - restaurant-service
+      - image-service
+    image: joppevhd/api-gateway
+    ports:
+      - 8085:8085
+    links:
+      - review-service
+      - user-service
+      - restaurant-service
+      - image-service
+    environment:
+      REVIEW_SERVICE_BASEURL: review-service:8082
+      USER_SERVICE_BASEURL: user-service:8083
+      RESTAURANT_SERVICE_BASEURL: restaurant-service:8081
+      IMAGE_SERVICE_BASEURL: image-service:8084
 
 volumes:
   mongodb_review_data:
