@@ -39,12 +39,12 @@ public class RestaurantService {
             restaurantRepository.save(restaurant1);
 
             Restaurant restaurant2 = new Restaurant();
-            restaurant1.setRestaurantCode("Resto2");
-            restaurant1.setName("Restaurant2");
-            restaurant1.setStreet("Straat2");
-            restaurant1.setStreetNumber("2");
-            restaurant1.setPlace("Plaats2");
-            restaurant1.setZipcode("2000");
+            restaurant2.setRestaurantCode("Resto2");
+            restaurant2.setName("Restaurant2");
+            restaurant2.setStreet("Straat2");
+            restaurant2.setStreetNumber("2");
+            restaurant2.setPlace("Plaats2");
+            restaurant2.setZipcode("2000");
 
             restaurantRepository.save(restaurant2);
         }
