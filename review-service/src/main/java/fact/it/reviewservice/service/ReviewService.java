@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,23 +28,21 @@ public class ReviewService {
             review1.setRestaurantCode("resto1");
             review1.setUserCode("user1");
             review1.setDescription("Goed restaurant");
+            List<String> imageString = new ArrayList<>(List.of("img1"));
+            review1.setImageCodes(imageString);
 
             reviewRepository.save(review1);
+
+            Review review2 = new Review();
+            review2.setReviewCode("rev2");
+            review2.setRestaurantCode("resto2");
+            review2.setUserCode("user2");
+            review2.setDescription("Meh restaurant");
+            List<String> imageString2 = new ArrayList<>(List.of("img2", "img3"));
+            review2.setImageCodes(imageString2);
+            reviewRepository.save(review2);
         }
     }
-
-    /*
-    public void createReview(ReviewRequest reviewRequest){
-        Review review = Review.builder()
-                .user(reviewRequest.getUser())
-                .restaurant(reviewRequest.getRestaurant())
-                .imageList(reviewRequest.getImageList())
-                .build();
-
-        reviewRepository.save(review);
-    }
-
-     */
 
     @Transactional()
     public List<ReviewResponse> getAllReviews(){
@@ -72,6 +71,20 @@ public class ReviewService {
                 .restaurantCode(review.getRestaurantCode())
                 .userCode(review.getUserCode())
                 .description(review.getDescription())
+                .imageCodes(review.getImageCodes())
                 .build();
+    }
+
+
+    public void createReview(ReviewRequest reviewRequest) {
+        Review review = Review.builder()
+                .reviewCode(reviewRequest.getReviewCode())
+                .restaurantCode(reviewRequest.getRestaurantCode())
+                .userCode(reviewRequest.getUserCode())
+                .description(reviewRequest.getDescription())
+                .imageCodes(reviewRequest.getImageCodes())
+                .build();
+
+        reviewRepository.save(review);
     }
 }

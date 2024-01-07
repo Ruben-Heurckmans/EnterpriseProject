@@ -10,35 +10,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/review")
 @RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewService reviewService;
 
-    /*
-    @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void createReview(@RequestBody ReviewRequest reviewRequest){
-        reviewService.createReview(reviewRequest);
-    }
-    */
-
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public List<ReviewResponse> getAllReviews(){
         return reviewService.getAllReviews();
     }
 
-    @GetMapping("/{reviewCode}")
+    @GetMapping("/get/{reviewCode}")
     @ResponseStatus(HttpStatus.OK)
     public ReviewResponse getReviewByReviewCode(@PathVariable String reviewCode){
         return reviewService.getReviewByReviewCode(reviewCode);
     }
 
-    @DeleteMapping ("/{reviewCode}")
+    @DeleteMapping ("/delete/{reviewCode}")
     @ResponseStatus(HttpStatus.OK)
     public String deleteReviewByReviewCode(@PathVariable String reviewCode){
         return reviewService.deleteReviewByReviewCode(reviewCode);
     }
+
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.OK)
+    public void createRestaurant(@RequestBody ReviewRequest reviewRequest){
+        reviewService.createReview(reviewRequest);
+    }
+
 }

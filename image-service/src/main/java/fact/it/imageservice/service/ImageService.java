@@ -28,6 +28,14 @@ public class ImageService {
             image1.setImageUrl("/img1.png");
 
             imageRepository.save(image1);
+
+            Image image2 = new Image();
+            image1.setImageCode("img2");
+            image1.setRestaurantCode("resto2");
+            image1.setReviewCode("rev2");
+            image1.setImageUrl("/img2.png");
+
+            imageRepository.save(image2);
         }
     }
 

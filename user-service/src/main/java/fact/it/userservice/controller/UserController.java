@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseStatus(HttpStatus.OK)
     public List<UserResponse> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping("/{userCode}")
+    @GetMapping("/get/{userCode}")
     @ResponseStatus(HttpStatus.OK)
     public UserResponse getUserByUserCode(@PathVariable String userCode){
         return userService.getUserByUserCode(userCode);

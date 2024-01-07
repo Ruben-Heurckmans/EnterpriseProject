@@ -37,6 +37,16 @@ public class RestaurantService {
             restaurant1.setZipcode("2400");
 
             restaurantRepository.save(restaurant1);
+
+            Restaurant restaurant2 = new Restaurant();
+            restaurant1.setRestaurantCode("Resto2");
+            restaurant1.setName("Restaurant2");
+            restaurant1.setStreet("Straat2");
+            restaurant1.setStreetNumber("2");
+            restaurant1.setPlace("Plaats2");
+            restaurant1.setZipcode("2000");
+
+            restaurantRepository.save(restaurant2);
         }
     }
 
@@ -49,19 +59,6 @@ public class RestaurantService {
     }
     */
 
-    /*
-    public boolean addRestaurant(RestaurantRequest restaurantRequest){
-        Restaurant restaurant = new Restaurant();
-
-        restaurantRepository.save(restaurant);
-        return true;
-    }
-    */
-
-    public Optional<Restaurant> getOptionalRestaurantByCode(String restaurantCode){
-        System.out.println(restaurantRepository.findAll().stream().filter(r-> r.getRestaurantCode()==restaurantCode).findFirst());
-        return restaurantRepository.findAll().stream().filter(r-> r.getRestaurantCode()==restaurantCode).findFirst();
-    }
 
     @Transactional()
     public List<RestaurantResponse> getAllRestaurants(){

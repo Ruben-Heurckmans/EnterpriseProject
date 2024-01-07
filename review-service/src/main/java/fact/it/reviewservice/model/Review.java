@@ -19,4 +19,5 @@ public class Review {
     private String restaurantCode;
     private String userCode;
     private String description;
+    private List<String> imageCodes;
 }
