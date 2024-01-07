@@ -37,7 +37,7 @@ user/get/user1 -> data van user1
 
 ### Review
 review/get/all -> lijst van alle reviews
-![reviewGetAll](./Screenshots/reviewGetAll.png)
+![reviewGetAll](./Screenshots/ReviewGetAll.png)
 
 review/get/rev1 -> data van rev1
 ![reviewGetRev1](./Screenshots/reviewGetRev1.png)
