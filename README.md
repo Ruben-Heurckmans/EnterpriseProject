@@ -25,6 +25,7 @@ Voor dit project zijn we gegaan voor een basic restaurant review app. Hierbij ku
 ## Gateways:
 
 ## Schema:
+![schema](./Screenshots/schema.png)
 
 ## Screenshots endpoints:
 
