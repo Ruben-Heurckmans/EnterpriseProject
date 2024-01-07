@@ -7,8 +7,6 @@ services:
       - 27017:27017
     volumes:
       - mongodb_review_data:/data/db
-    networks:
-      - my_network
 
   mongo-image:
     image: mongo:latest
@@ -16,8 +14,6 @@ services:
       - 27018:27017
     volumes:
       - mongodb_image_data:/data/db
-    networks:
-      - my_network
 
   mysql-user:
     image: mysql:latest
@@ -27,8 +23,6 @@ services:
       - mysql_user_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
-    networks:
-      - my_network
 
   mysql-restaurant:
     image: mysql:latest
@@ -38,8 +32,6 @@ services:
       - mysql_restaurant_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: abc123
-    networks:
-      - my_network
 
   review-service:
     depends_on:
@@ -50,8 +42,6 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-review
-    networks:
-      - my_network
 
   image-service:
     depends_on:
@@ -62,8 +52,6 @@ services:
     environment:
       MONGODB_PORT: 27017
       MONGODB_HOST: mongo-image
-    networks:
-      - my_network
 
   user-service:
     depends_on:
@@ -76,8 +64,6 @@ services:
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-user
       MYSQL_DB_PORT: 3306
-    networks:
-      - my_network
 
   restaurant-service:
     depends_on:
@@ -94,12 +80,23 @@ services:
       MYSQL_DB_PASSWORD: abc123
       MYSQL_DB_HOST: mysql-restaurant
       MYSQL_DB_PORT: 3306
-    networks:
-      - my_network
 
-networks:
-  my_network:
-    driver: bridge
+  api-gateway:
+   depends_on:
+     - review-service
+     - user-service
+     - restaurant-service
+   image: joppevhd/api-gateway
+   ports:
+     - 8085:8085
+   links:
+     - review-service
+     - user-service
+     - restaurant-service
+   environment:
+     REVIEW_SERVICE_BASEURL: review-service:8082
+     USER_SERVICE_BASEURL: user-service:8083
+     RESTAURANT_SERVICE_BASEURL: restaurant-service:8081
 
 volumes:
   mongodb_review_data:

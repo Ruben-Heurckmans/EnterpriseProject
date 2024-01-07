@@ -1,0 +1,38 @@
+server:
+  port: 8085
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
+    reactor.netty: TRACE
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: review-service
+          uri: http://review-service:8082  # Overeenkomstig met de service-naam in Docker Compose
+          predicates:
+            - Path=/reviews/**
+          filters:
+            - StripPrefix=1
+        - id: restaurant-service
+          uri: http://restaurant-service:8081  # Overeenkomstig met de service-naam in Docker Compose
+          predicates:
+            - Path=/restaurants/**
+          filters:
+            - StripPrefix=1
+        - id: user-service
+          uri: http://user-service:8083  # Overeenkomstig met de service-naam in Docker Compose
+          predicates:
+            - Path=/users/**
+          filters:
+            - StripPrefix=1
+        - id: image-service
+          uri: http://image-service:8084  # Overeenkomstig met de service-naam in Docker Compose
+          predicates:
+            - Path=/images/**
+          filters:
+            - StripPrefix=1
