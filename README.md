@@ -23,6 +23,16 @@ Microservices:
   plaats en postcode.
 
 Gateways:
+- Onze lokale services draaien op volgende poorten:
+    - review-service: localhost:8082
+    - image-service: localhost:8084
+    - restaurant-service: localhost:8081
+    - user-service: localhost:8083
+- En onze services komen terecht op de volgende endpoint op onze gateway:
+    - review-service: localhost:8085/review/**
+    - image-service: localhost:8085/image/**
+    - restaurant-service: localhost:8085/restaurant/**
+    - user-service: localhost:8085/user/**
 
 Schema:
 
